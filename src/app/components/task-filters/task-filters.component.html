@@ -1,0 +1,38 @@
+<div class="filters-container">
+  <!-- Campo de entrada para pesquisa de texto -->
+  <mat-form-field appearance="outline">
+    <mat-label>Pesquisar tarefas</mat-label>
+    <input
+      matInput
+      [ngModel]="search()"
+      (ngModelChange)="updateSearch($event)"
+      placeholder="Ex: Estudar Angular"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <!-- Filtro de propriedade -->
+  <mat-form-field appearance="outline">
+    <mat-label>Prioridade</mat-label>
+    <mat-select [ngModel]="priority()" (ngModelChange)="updatePriority($event)">
+      @for (priority of priorities; track priority) {
+        <mat-option [value]="priority"> {{ priority }} </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Filtro de status -->
+  <mat-form-field appearance="outline">
+    <mat-label>Status</mat-label>
+    <mat-select [ngModel]="status()" (ngModelChange)="updateStatus($event)">
+      @for (status of statuses; track status) {
+        <mat-option [value]="status"> {{ status }} </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-stroked-button color="warn" (click)="reset()">
+    <mat-icon>restart_alt</mat-icon>
+    Resetar filtros
+  </button>
+</div>
